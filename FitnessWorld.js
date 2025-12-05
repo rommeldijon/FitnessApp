@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, Image, Button, ScrollView, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
+    import React from 'react';
+    import { View, Text, Image, Button, ScrollView, FlatList, StyleSheet, TouchableOpacity } from 'react-native';
 
 const PopularworkoutPlans = [
   { id: '1', title: 'Full Body Workout', description: '45 minutes of full body exercise', duration: '45 min', imageUrl: 'https://images.unsplash.com/photo-1711623350002-d97138f35bf2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' },
@@ -18,17 +18,19 @@ export default function FitnessWorld() {
 
   const renderWorkout = ({ item }) => (
     <View style={styles.workoutCard}>
-       <Image source={{ uri: item.imageUrl }} style={styles.workoutImage} />
-       <Text style={styles.workoutTitle}>{item.title}</Text>
-       <Text style={styles.workoutDescp}>{item.description}</Text>
-       <Text style={styles.workoutDescp} testID="workoutDescp">Duration: {item.duration}</Text>
-       <TouchableOpacity style={styles.joinButton} onPress={() => alert(`Joined ${item.title}`)}>
-       </TouchableOpacity>
+      <Image source={{ uri: item.imageUrl }} style={styles.workoutImage} />
+      <Text style={styles.workoutTitle}>{item.title}</Text>
+      <Text style={styles.workoutDescp}>{item.description}</Text>
+      <Text style={styles.workoutDescp}>Duration: {item.duration}</Text>
+      <TouchableOpacity style={styles.joinButton} onPress={() => alert(`Joined ${item.title}`)}>
+        <Text style={styles.buttonText}>Join Now</Text>
+      </TouchableOpacity>
     </View>
-);
+  );
 
   return (
-    <ScrollView>
+    <ScrollView style={styles.container}>
+      {/* Fitness Programs Section */}
       <View style={styles.section}>
         <Text style={styles.header}>StartYour Fitness Journey</Text>
         <Text style={styles.workoutDescp}>Welcome to join fitness journey, where every rep brings you closer to your best self. Let’s crush your fitness goals together!</Text>
@@ -39,15 +41,16 @@ export default function FitnessWorld() {
         <Text style={styles.text}>• Mental clarity and focus</Text>
       </View>
 
+
       {/* Featured Training Types Section */}
       <View style={styles.section}>
         <Text style={styles.header}>Featured Training Types</Text>
         <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-         <View style={styles.trainingTypeCard}>
+          <View style={styles.trainingTypeCard}>
             <Image source={{ uri: 'https://images.unsplash.com/photo-1589579234096-25cb6b83e021?q=80&w=1887&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }} style={styles.trainingImage} />
             <Text style={styles.trainingTitle}>Strength Training</Text>
-         </View>
-         <View style={styles.trainingTypeCard}>
+          </View>
+          <View style={styles.trainingTypeCard}>
             <Image source={{ uri: 'https://images.unsplash.com/photo-1689876593463-6678f2e8d4f2?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D' }} style={styles.trainingImage} />
             <Text style={styles.trainingTitle}>Cardio</Text>
           </View>
@@ -58,8 +61,8 @@ export default function FitnessWorld() {
         </ScrollView>
       </View>
 
-      {/*Popular Workout Plans Section */}
-    <View style={styles.section}>
+      {/* Workout Plans Section */}
+      <View style={styles.section}>
         <Text style={styles.header}>Popular Workout Plans</Text>
         <FlatList
           data={PopularworkoutPlans}
@@ -68,20 +71,10 @@ export default function FitnessWorld() {
           horizontal={true} // Display workouts horizontally
           showsHorizontalScrollIndicator={false}
         />
-    </View>
-     <View style={styles.section}>
-       <Text style={styles.header}>Intense Workout Plans</Text>
-       <FlatList
-          data={IntenseWorkoutPlans}
-          renderItem={renderWorkout}
-          keyExtractor={(item) => item.id}
-          horizontal={true}
-          showsHorizontalScrollIndicator={false}
-        />
-     </View>
+      </View>
 
-      {/*Intense Workout Plans Section*/}
-     <View style={styles.section}>
+      {/* Intense Workout Plans Section */}
+      <View style={styles.section}>
         <Text style={styles.header}>Intense Workout Plans</Text>
         <FlatList
           data={IntenseWorkoutPlans}
@@ -100,7 +93,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-    backgroundColor: 'black',
+    backgroundColor: 'black', // Light gray background
   },
   section: {
     marginBottom: 20,
@@ -109,7 +102,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: '#ff7f00',
+    color: '#ff7f00', // Orange color for headers
   },
   headerbenefit:{
     fontSize: 24,
@@ -120,7 +113,7 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     marginBottom: 5,
-    color: '#fff',
+    color: '#fff', // Dark gray for text
   },
   trainingTypeCard: {
     marginRight: 20,
@@ -136,7 +129,7 @@ const styles = StyleSheet.create({
     marginTop: 10,
     fontSize: 16,
     fontWeight: 'bold',
-    color: '#4caf50',
+    color: '#4caf50', // Green color for training types
   },
   workoutCard: {
     marginRight: 20,
@@ -145,7 +138,7 @@ const styles = StyleSheet.create({
     borderColor: '#ccc',
     borderWidth: 1,
     borderRadius: 10,
-    backgroundColor: '#fff',
+    backgroundColor: '#fff', // White background for workout cards
     textAlign:'center'
   },
   workoutImage: {
@@ -157,20 +150,21 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginTop: 10,
-    color: '#333',
+    color: '#333', // Dark gray for workout titles
     textAlign:'center'
   },
   workoutDescp:{
-  textAlign:'center'
+ textAlign:'center'
   },
   joinButton: {
     marginTop: 10,
-    backgroundColor: '#ff7f00',
+    backgroundColor: '#ff7f00', // Orange button color
+    paddingVertical: 8,
     paddingHorizontal: 12,
     borderRadius: 5,
   },
   buttonText: {
-    color: '#fff',
+    color: '#fff', // White text for buttons
     fontWeight: 'bold',
     textAlign: 'center',
   },
